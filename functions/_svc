@@ -1,0 +1,32 @@
+#compdef svcadm svcs
+#
+# $Id: _svc 9 2008-06-21 20:10:17Z superbaloo $
+
+_svc () {
+	case "$service" in
+		svcs) _svcs "$@";;
+		svcadm) _svcadm "$@";;
+		*) _message "Invalid service $service";;
+	esac
+}
+
+_svcadm () {
+	local expl prev="$words[CURRENT-1]"
+
+	if [[ -n $words[(r)(enable|disable|clear|restart|refresh|mark)] ]] ; then
+		_message 'ok'
+	else
+  		_arguments \
+  			'-v:verbose' && return
+	fi
+}
+
+_svcs () {
+	local -a zones
+	zones=(a b c)
+   _arguments \
+    '-z[zone]:zone:($zones)' \
+    '*:command:(boot halt install list ready uninstall verify reboot)' && return
+}
+
+return 1

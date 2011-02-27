@@ -1,0 +1,29 @@
+# vim: set syntax=zsh:
+
+# Use emacs bindkey
+bindkey -e
+
+# Load read-from-minibuffer widget
+autoload -U read-from-minibuffer
+
+# Define a new function which apply a regexp
+# to all words but the first one (the command)
+regex-edit () {
+	# REPLY will be filled by read-from-minibuffer
+	local REPLY words 
+	words=(${=BUFFER})
+	read-from-minibuffer "Regexp:"
+	echo $REPLY
+	if [ -n $REPLY ]; then
+		# Yes I know, it's a bit ugly, but how apply a regex
+		# in pure zsh ?
+		BUFFER="$words[1] $(echo $words[2,${#words}] | sed ${REPLY})"
+	fi
+}
+
+# Create a new ZLE widget
+zle -N regex-edit
+
+# And finally bind it
+bindkey "^[e" regex-edit
+bindkey '^U' backward-kill-line

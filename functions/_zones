@@ -1,0 +1,53 @@
+#compdef zoneadm zonecfg zlogin
+#
+# $Id: _zones 9 2008-06-21 20:10:17Z superbaloo $
+
+_zones () {
+	case "$service" in
+		zoneadm)	_zoneadm "$@";;
+		zonecfg) _zonecfg "$@";;
+		zlogin) _zlogin "$@";;
+		*) _message "Unknow service $service";;
+	esac
+}
+
+_zlogin () {
+	local -a zones
+	zones=($(zonelist))
+	_arguments \
+		'-l[username]:username:_users' \
+		'-C[console login]' \
+		'-S[safe login]' \
+		'-E[disable escape sequence character]' \
+		'*:zone:($zones)' && return
+}
+
+_zoneadm () {
+	local -a zones
+	zones=($(zonelist))
+	_arguments \
+		'-z[zone]:zone:($zones)' \
+		'*:command:(boot halt install list ready uninstall verify reboot)' && return
+}
+
+_zonecfg () {
+	local -a zones
+	zones=($(zonelist))
+	_arguments \
+		'-z[zone]:zone:($zones)' \
+		'-f[command file]:file:_files' && return
+}
+
+zonelist () {
+	local -a zones
+
+	# Fetch zone lists from /etc/zones/index
+	zones=(${${(a)"${(f)$(< /etc/zones/index)}"##\#*}//:*}) #" prevent vim become crazy
+
+	# Remove global zone from list "
+	zones[(r)global]=''
+
+	echo -n $zones
+}
+
+return 1
