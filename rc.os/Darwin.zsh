@@ -17,6 +17,8 @@ for tool in $HOME/tools/*(-/DN) ; do
    fi
 done
 
+PATH=$PATH:/opt/local/bin
+
 if [[ -r /sw ]]; then
 	. /sw/bin/init.sh
 fi
