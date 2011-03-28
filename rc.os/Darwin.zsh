@@ -27,16 +27,16 @@ export PATH MANPATH
 
 source $HOME/.zsh/rc.os/prompt.zsh
 # Check for gnuls
-if [ -x $(which gls) ] ; then
+if [ -x "$(which gls)" ] ; then
 	eval `gdircolors $HOME/.zsh/misc/dircolors.rc`
 	alias ls='gls --color'
 	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
 # 
-[ -x $(which gtar) ] && alias tar=gtar
+[ -x "$(which gtar)" ] && alias tar=gtar
 
-if [[ -x $(which vim) ]]; then
+if [[ -x "$(which vim)" ]]; then
 	export EDITOR=vim
 else
 	export EDITOR=vi
