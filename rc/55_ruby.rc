@@ -1,3 +1,5 @@
+# -*- shell-script -*-x 
+# vim: set syntax=zsh:
 
 
 RUBY_PATH=(
@@ -7,7 +9,11 @@ RUBY_PATH=(
   "$HOME/.gem/ruby/1.9/bin/"
   )
 
-for path in $RUBY_PATH; do
-  export PATH=$PATH:$path;
+for newpath in $RUBY_PATH; do
+  if [ -d $newpath ]; then
+    
+    echo "Ruby add path : $newpath"
+    export PATH=$PATH:$newpath
+  fi
 done
 
