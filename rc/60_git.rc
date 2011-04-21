@@ -17,3 +17,9 @@ if [ -x "$(which repl)" ]; then
 fi
 
 
+# Do we have gitdown ?
+# git clone https://github.com/imatix/gitdown $HOME/.bin/gitdown
+if [ -d "$HOME/.bin/gitdown/bin/" ]; then
+  export PATH=$PATH:$HOME/.bin/gitdown/bin/
+fi
+
