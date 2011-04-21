@@ -11,8 +11,6 @@ RUBY_PATH=(
 
 for newpath in $RUBY_PATH; do
   if [ -d $newpath ]; then
-    
-    echo "Ruby add path : $newpath"
     export PATH=$PATH:$newpath
   fi
 done
