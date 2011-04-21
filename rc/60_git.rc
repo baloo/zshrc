@@ -1,0 +1,19 @@
+# -*- shell-script -*-x 
+# vim: set syntax=zsh:
+
+
+
+# We need repl 
+if [ -x "$(which repl)" ]; then 
+  realgit=$(which git)
+  
+  git() { 
+    if [[ $# == 0 ]]; then
+      repl git;
+    else
+      $realgit $*; 
+    fi
+  }
+fi
+
+
