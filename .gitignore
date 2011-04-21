@@ -1,3 +1,4 @@
 histories/*
 cache/*
-
+.*.un\~
+zshrc.local
