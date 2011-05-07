@@ -1,0 +1,17 @@
+# -*- shell-script -*-x 
+# vim: set syntax=zsh:
+
+
+RUBY_PATH=(
+  "/var/lib/gems/1.8/bin"
+  "/var/lib/gems/1.9/bin"
+  "$HOME/.gem/ruby/1.8/bin/"
+  "$HOME/.gem/ruby/1.9/bin/"
+  )
+
+for newpath in $RUBY_PATH; do
+  if [ -d $newpath ]; then
+    export PATH=$PATH:$newpath
+  fi
+done
+

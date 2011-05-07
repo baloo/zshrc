@@ -1,10 +1,6 @@
 Installation
 --------------------------------------------------------------------------------
 
-I suggest to directly use the subversion repository, using something like:
-
-% cd
-% svn checkout http://svn.asyd.net/svn/zsh/trunk .zsh
 % ln -s .zsh/zshrc .zshrc
 
 Warning, this will overwrite your .zshrc file if its exists.
@@ -48,12 +44,13 @@ Contributors
 
 Thanks to the following people that helped me to increase the configuration:
 
+- Bruno Bonfils
 - Regis Roches
 - Antoine Reversat
 
 Feedback
 --------------------------------------------------------------------------------
 
-Any feedbacks are welcome, sent them to asyd@asyd.net
+Any feedbacks are welcome, sent them to superbaloo@superbaloo.net
 
 Enjoy!

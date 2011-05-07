@@ -1,0 +1,25 @@
+# -*- shell-script -*-x 
+# vim: set syntax=zsh:
+
+
+
+# We need repl 
+if [ -x "$(which repl)" ]; then 
+  realgit=$(which git)
+  
+  git() { 
+    if [[ $# == 0 ]]; then
+      repl git;
+    else
+      $realgit $*; 
+    fi
+  }
+fi
+
+
+# Do we have gitdown ?
+# git clone https://github.com/imatix/gitdown $HOME/.bin/gitdown
+if [ -d "$HOME/.bin/gitdown/bin/" ]; then
+  export PATH=$PATH:$HOME/.bin/gitdown/bin/
+fi
+
