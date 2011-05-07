@@ -72,9 +72,9 @@ alias -s pem="openssl x509 -text -noout -in"
 alias -s req="openssl req -text -in"
 
 ssh_key_manage() {
-	if [[ -x `which keychain` ]] && [[ `ls $HOME/.ssh/*pub | wc -l` -ge 1 ]] ; then 
-		for i in `\ls $HOME/.ssh/id*.pub`; do 
-			key=`echo $i |sed -r 's/^(.*).pub/\1/' |sed -r 's/[^a-z0-9\.\/\-\_]//g'`
+	if [[ -x `which keychain` ]] && [[ "`ls $HOME/.ssh/*pub | wc -l`" -ge 1 ]] ; then 
+		for i in "`\ls $HOME/.ssh/id*.pub`"; do 
+			key=`echo $i |sed  -E 's/^(.*).pub/\1/' |sed -E 's/[^a-z0-9\.\/\-\_]//g'`
 			if [[ -f "$key" ]] ; then 
 				keychain --nogui $key
 				[[ -r ~/.ssh-agent-`hostname` ]] && . ~/.ssh-agent-`hostname`
