@@ -8,7 +8,7 @@ source $HOME/.zsh/rc.os/common.zsh
 
 PATH=$HOME/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/ccs/bin:/usr/sfw/bin:/usr/openwin/bin:/usr/local/bin:/usr/local/sbin
 
-MANPATH=/usr/man
+MANPATH=/usr/man:/opt/local/man
 
 # Extra tools
 for tool in $HOME/tools/*(-/DN) ; do
