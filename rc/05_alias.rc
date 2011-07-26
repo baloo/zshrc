@@ -74,7 +74,7 @@ alias -s req="openssl req -text -in"
 key_manage() {
 	if [[ -x `which keychain` ]] && [[ `ls $HOME/.ssh/*pub | wc -l` -ge 1 ]] ; then 
 		for i in `\ls $HOME/.ssh/id*.pub`; do 
-			key=`echo $i |sed -r 's/^(.*).pub/\1/' |sed -r 's/[^a-z0-9\.\/\-\_]//g'`
+			key=`echo $i |sed -E 's/^(.*).pub/\1/' |sed -E 's/[^a-z0-9\.\/\-\_]//g'`
 			if [[ -f "$key" ]] ; then 
 				keys="${keys:+$keys
 }$key"

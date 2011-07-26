@@ -40,7 +40,7 @@ ssh-install-key() {
     if [ -z $1 ] ; then
         echo "Usage : $0 [user@]host";
     else
-        cat ~/.ssh/id_rsa.pub | ssh $1 "cat - >> ~/.ssh/authorized_keys"
+        cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir -p .ssh; cat - >> .ssh/authorized_keys"
         echo "Key installed on $1"
     fi
 }

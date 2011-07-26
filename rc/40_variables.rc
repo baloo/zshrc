@@ -16,7 +16,7 @@ if [ -x `which less` ]; then
 fi
 
 
-PATH=$PATH:~/.zsh/bin:~/bin:/sbin:/usr/sbin:/usr/local/sbin
+PATH=$PATH:~/.zsh/bin:~/bin:/sbin:/usr/sbin:/usr/local/sbin:~/.bin/bin
 
 for tool in $HOME/tools/*(-/DN) ; do
 	if [ -d $tool/bin ] ; then
