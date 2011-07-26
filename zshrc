@@ -29,6 +29,8 @@ prompt wunjo
 # Activation
 compinit
 
+[[ -f ~/.zsh/zshrc.local.early ]] && source ~/.zsh/zshrc.local.early
+
 local os host
 
 # Set default umask to 027, can be override by host specific resource file
