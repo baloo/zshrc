@@ -71,22 +71,30 @@ alias -s conf="vim"
 alias -s pem="openssl x509 -text -noout -in"
 alias -s req="openssl req -text -in"
 
-ssh_key_manage() {
+key_manage() {
 	if [[ -x `which keychain` ]] && [[ `ls $HOME/.ssh/*pub | wc -l` -ge 1 ]] ; then 
 		for i in `\ls $HOME/.ssh/id*.pub`; do 
 			key=`echo $i |sed -r 's/^(.*).pub/\1/' |sed -r 's/[^a-z0-9\.\/\-\_]//g'`
 			if [[ -f "$key" ]] ; then 
-				keychain --nogui $key
-				[[ -r ~/.ssh-agent-`hostname` ]] && . ~/.ssh-agent-`hostname`
-				[[ -r ~/.keychain/`hostname`-sh ]] &&  source ~/.keychain/`hostname`-sh
+				keys="${keys:+$keys
+}$key"
 			fi
 		done
+		if [[ "$MY_GPG_KEY" != "" ]]; then
+			keys="${keys:+$keys
+}$MY_GPG_KEY"
+		fi
+		keychain --nogui $keys
 	fi
+
+	[[ -r ~/.ssh-agent-`hostname` ]] && . ~/.ssh-agent-`hostname`
+	[[ -r ~/.keychain/`hostname`-sh ]] &&  source ~/.keychain/`hostname`-sh
+	[[ -r ~/.keychain/`hostname`-sh-gpg ]] &&  source ~/.keychain/`hostname`-sh-gpg
 }
 
 # ssh key management
 if [[ "$USER" != "root" ]]; then
-	ssh_key_manage
+	key_manage
 fi
 
 # cron / fcronb
