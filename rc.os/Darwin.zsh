@@ -43,14 +43,14 @@ else
 fi
 
 # For SSH, override TERM to VT100 before ssh if set to screen
-ssh () {
-   target=$_
-   target=${target//*@/}
-   set_title $target
-
-	if [[ $TERM == "screen" ]] ; then
-	   TERM=vt100 command ssh $*
-	else
-		command ssh $*
-	fi
-}
+#ssh () {
+#   target=$_
+#   target=${target//*@/}
+#   set_title $target
+#
+#	if [[ $TERM == "screen" ]] ; then
+#	   TERM=vt100 command ssh $*
+#	else
+#		command ssh $*
+#	fi
+#}
